@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salt Ledger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="mast">
+    <div class="mast-left">
+      <span class="mark" aria-hidden="true"></span>
+      <div>
+        <p class="eyebrow">Public press · turns on the hour</p>
+        <h1>Salt Ledger</h1>
+      </div>
+    </div>
+    <nav class="mast-nav">
+      <button type="button" id="to-wall">Wall</button>
+      <button type="button" id="to-desk">Desk</button>
+      <button type="button" id="auth-btn">Sign in</button>
+    </nav>
+  </header>
+  <section class="edition" id="edition">
+    <div class="edition-meta">
+      <p class="hour-label" id="hour-label">This hour</p>
+      <p class="countdown" id="countdown">—</p>
+    </div>
+    <h2 id="headline">The room is still warming.</h2>
+    <p class="dek" id="dek">Every hour the ledger prints a new front. Public notes from members stay on the wall.</p>
+  </section>
+  <main>
+    <section id="wall" class="panel">
+      <div class="section-head">
+        <h3>On the wall</h3>
+        <p>Anything marked public is here. Private notes stay in your desk.</p>
+      </div>
+      <div id="public-list" class="card-grid"></div>
+    </section>
+    <section id="desk" class="panel hidden">
+      <div class="section-head">
+        <h3>Your desk</h3>
+        <p>Draft quietly. Pin a note public when it is ready to face the room.</p>
+      </div>
+      <form id="note-form" class="composer">
+        <input id="note-title" maxlength="80" placeholder="Title" required />
+        <textarea id="note-body" maxlength="1200" placeholder="What is worth keeping this hour?" required></textarea>
+        <label class="check">
+          <input type="checkbox" id="note-public" />
+          Mark public — show on the wall
+        </label>
+        <button type="submit">File this note</button>
+      </form>
+      <div id="mine-list" class="card-grid"></div>
+    </section>
+  </main>
+  <div id="auth-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="close" id="close-modal" type="button">Close</button>
+      <h3 id="auth-title">Sign in</h3>
+      <p class="hint">Email and password. Notes are stored on your account.</p>
+      <form id="auth-form">
+        <input id="auth-email" type="email" placeholder="Email" required />
+        <input id="auth-pass" type="password" placeholder="Password" minlength="6" required />
+        <input id="auth-handle" placeholder="Handle (new accounts)" />
+        <div class="row">
+          <button type="submit" id="auth-submit">Continue</button>
+          <button type="button" id="toggle-mode" class="ghost">Need an account?</button>
+        </div>
+      </form>
+      <p id="auth-msg" class="msg"></p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
